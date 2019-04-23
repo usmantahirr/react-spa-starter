@@ -11,10 +11,14 @@
     "react-scripts": "3.0.0",
     "reactstrap": "^8.0.0"
   },
-  "precommit": "NODE_ENV=production lint-staged",
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
   "lint-staged": {
-    "*.{js,jsx}": [
-      "pretty-quick --staged",
+    "*.{js,jsx,json,css,md}": [
+      "prettier --write",
       "eslint src/ --fix",
       "git add"
     ]
