@@ -8,6 +8,7 @@ const AuthContainer = ({ history }) => {
   const authContext = useContext(AuthContext);
 
   if (authContext.checkAuthentication()) {
+    // TODO: Stay at current page;
     history.push('/');
   }
 

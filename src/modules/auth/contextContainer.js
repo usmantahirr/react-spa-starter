@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { withRouter } from 'react-router';
 
 import { AuthContextProvider } from './authContext';
+import { AUTH_PAGE, LOGGEDIN_HOME } from '../../config';
 
 const AuthContextContainer = ({ history, children }) => {
   const [state, setState] = useState({
@@ -12,14 +13,14 @@ const AuthContextContainer = ({ history, children }) => {
     localStorage.setItem('user', user);
     localStorage.setItem('token', token);
     setState({ isAuthenticated: true });
-    history.push('/');
+    history.push(LOGGEDIN_HOME);
   };
 
   const logout = () => {
     localStorage.removeItem('user');
     localStorage.removeItem('token');
     setState({ isAuthenticated: false });
-    history.push('/account/login');
+    history.push(AUTH_PAGE);
   };
 
   const checkAuthentication = () => !!localStorage.getItem('user') && !!localStorage.getItem('token');

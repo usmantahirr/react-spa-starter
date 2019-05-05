@@ -6,6 +6,7 @@ import { ErrorContextProvider } from './context';
 
 class ErrorBoundary extends React.Component {
   static getDerivedStateFromError(error) {
+    // eslint-disable-next-line no-console
     console.log('Derived Error', error);
     return { applicationError: true };
   }
@@ -45,6 +46,7 @@ class ErrorBoundary extends React.Component {
 
   componentDidCatch(error, info) {
     // You can also log the error to an error reporting service
+    // eslint-disable-next-line no-console
     console.log('CDC', error, info);
   }
 

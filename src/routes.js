@@ -1,9 +1,10 @@
 import React, { Suspense, useContext } from 'react';
 import { Redirect, Route, Switch } from 'react-router';
-import { NavLink } from 'react-router-dom';
 
 import { AuthContext } from './modules/auth/authContext';
 import AuthRoutes from './modules/auth/routes';
+import HomeRoutes from './modules/home/routes';
+import DashboardRoutes from './modules/dashboard/routes';
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
   const authContext = useContext(AuthContext);
@@ -30,7 +31,8 @@ const Routes = () => (
   <Suspense fallback="loading">
     <Switch>
       {AuthRoutes.map(renderRouteFromList())}
-      <PrivateRoute exact path="/" component={() => <NavLink to="/account/login">Login</NavLink>} />
+      {HomeRoutes.map(renderRouteFromList())}
+      {DashboardRoutes.map(renderRouteFromList(true))}
     </Switch>
   </Suspense>
 );

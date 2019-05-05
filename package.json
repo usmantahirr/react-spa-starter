@@ -34,7 +34,7 @@
     }
   },
   "lint-staged": {
-    "*.{js,jsx,css,md}": [
+    "*.{js,jsx,css}": [
       "prettier --write",
       "yarn run lint:fix",
       "git add"
