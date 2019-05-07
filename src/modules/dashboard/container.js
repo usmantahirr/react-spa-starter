@@ -1,12 +1,11 @@
 import React, { useEffect } from 'react';
-import { Button, Row, Col, Spinner } from 'reactstrap';
+import { Button } from 'reactstrap';
 import { NavLink, withRouter } from 'react-router-dom';
-
 import DualColumnTemplate from '../../shared/templates/dualColumnTemplate';
 import { AuthContext } from '../auth/authContext';
 import { getCourseList } from './service';
 import { APPLICATION_HOME } from '../../config';
-import ErrorContext from '../../shared/molecules/error/context';
+import ErrorContext, { ErrorContextConsumer } from '../../shared/molecules/error/context';
 
 const defaultState = {
   courses: [],
@@ -54,22 +53,24 @@ const DashboardContainer = ({ match }) => {
               Home
             </NavLink>
             <Button onClick={() => authContext.logout()}>Logout</Button>
-            <Row>
-              <Col>
-                {state.isLoading ? (
-                  <Spinner />
-                ) : (
-                  <ul>
-                    {state.courses.map(course => (
-                      <li key={course.id}>
-                        <img className="img-thumbnail" src={course.thumbnail} alt={`${course.name}-thumb`} />
-                        {course.name}
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </Col>
-            </Row>
+            <ErrorContextConsumer>
+              {props => (
+                <Button
+                  onClick={() =>
+                    props.setError(
+                      {
+                        type: 'info',
+                        message: 'Error Occurred',
+                        statusCode: 404,
+                      },
+                      true
+                    )
+                  }
+                >
+                  Show Error
+                </Button>
+              )}
+            </ErrorContextConsumer>
           </React.Fragment>
         ),
       }}

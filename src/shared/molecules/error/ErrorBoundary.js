@@ -1,7 +1,7 @@
-import React, { createRef } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
-import NotificationSystem from 'react-notification-system';
+import NotificationContext from './NotificationContext';
 import { ErrorContextProvider } from './context';
 
 class ErrorBoundary extends React.Component {
@@ -11,7 +11,7 @@ class ErrorBoundary extends React.Component {
     return { applicationError: true };
   }
 
-  notificationsRef = createRef();
+  static contextType = NotificationContext;
 
   constructor(props) {
     super(props);
@@ -29,17 +29,9 @@ class ErrorBoundary extends React.Component {
   }
 
   setError(error, show) {
-    if (show && this.notificationsRef && this.notificationsRef.current) {
-      this.notificationsRef.current.addNotification({
-        level: 'error',
-        message: (
-          <div>
-            <b>{error.statusCode}: </b>
-            {error.message}
-          </div>
-        ),
-        position: 'tc',
-      });
+    if (show) {
+      // eslint-disable-next-line react/destructuring-assignment
+      this.context.setNotification(error, show);
     }
     this.setState({ error });
   }
@@ -58,12 +50,7 @@ class ErrorBoundary extends React.Component {
       return <h1>Something went wrong.</h1>;
     }
 
-    return (
-      <ErrorContextProvider value={{ error, setError: this.setError }}>
-        <NotificationSystem ref={this.notificationsRef} />
-        {children}
-      </ErrorContextProvider>
-    );
+    return <ErrorContextProvider value={{ error, setError: this.setError }}>{children}</ErrorContextProvider>;
   }
 }
 
