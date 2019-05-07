@@ -7,6 +7,7 @@ const defaultErrorContextState = {
     statusCode: '',
   },
   setError: (error, show) => {
+    // eslint-disable-next-line no-console
     console.log(error, show);
   },
 };

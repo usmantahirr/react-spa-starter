@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from 'reactstrap';
 import { NavLink } from 'react-router-dom';
-import { NotificationContextConsumer } from '../../shared/molecules/error/NotificationContext';
+import { ErrorContextConsumer } from '../../shared/molecules/error/context';
 import DualColumnTemplate from '../../shared/templates/dualColumnTemplate';
 import { AuthContext } from '../auth/authContext';
 import { APPLICATION_HOME } from '../../config';
@@ -20,11 +20,11 @@ const DashboardContainer = () => {
               Home
             </NavLink>
             <Button onClick={() => authContext.logout()}>Logout</Button>
-            <NotificationContextConsumer>
+            <ErrorContextConsumer>
               {props => (
                 <Button
                   onClick={() =>
-                    props.setNotification(
+                    props.setError(
                       {
                         type: 'info',
                         message: 'Error Occured',
@@ -37,7 +37,7 @@ const DashboardContainer = () => {
                   Show Error
                 </Button>
               )}
-            </NotificationContextConsumer>
+            </ErrorContextConsumer>
           </React.Fragment>
         ),
       }}

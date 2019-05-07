@@ -4,13 +4,7 @@ import PropTypes from 'prop-types';
 import NotificationSystem from 'react-notification-system';
 import { NotificationContextProvider } from './NotificationContext';
 
-class ErrorBoundary extends React.Component {
-  static getDerivedStateFromError(error) {
-    // eslint-disable-next-line no-console
-    console.log('Derived Error', error);
-    return { applicationError: true };
-  }
-
+class Notifications extends React.Component {
   notificationsRef = createRef();
 
   constructor(props) {
@@ -25,7 +19,6 @@ class ErrorBoundary extends React.Component {
         message: '',
         statusCode: '',
       },
-      applicationError: false,
     };
   }
 
@@ -45,19 +38,9 @@ class ErrorBoundary extends React.Component {
     this.setState({ notification });
   }
 
-  componentDidCatch(error, info) {
-    // You can also log the error to an error reporting service
-    // eslint-disable-next-line no-console
-    console.log('CDC', error, info);
-  }
-
   render() {
     const { children } = this.props;
-    const { notification, applicationError } = this.state;
-
-    if (applicationError) {
-      return <h1>Something went wrong.</h1>;
-    }
+    const { notification } = this.state;
 
     return (
       <NotificationContextProvider value={{ notification, setNotification: this.setNotification }}>
@@ -68,8 +51,8 @@ class ErrorBoundary extends React.Component {
   }
 }
 
-ErrorBoundary.propTypes = {
+Notifications.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-export default ErrorBoundary;
+export default Notifications;

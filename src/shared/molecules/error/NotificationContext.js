@@ -8,6 +8,7 @@ const defaultNotificationContextState = {
     statusCode: '',
   },
   setNotification: (notification, show) => {
+    // eslint-disable-next-line no-console
     console.log(notification, show);
   },
 };
