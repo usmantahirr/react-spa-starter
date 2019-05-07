@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Button } from 'reactstrap';
+import { Button, Row, Col, Spinner } from 'reactstrap';
 import { NavLink, withRouter } from 'react-router-dom';
 import DualColumnTemplate from '../../shared/templates/dualColumnTemplate';
 import { AuthContext } from '../auth/authContext';
@@ -71,6 +71,22 @@ const DashboardContainer = ({ match }) => {
                 </Button>
               )}
             </ErrorContextConsumer>
+            <Row>
+              <Col>
+                {state.isLoading ? (
+                  <Spinner />
+                ) : (
+                  <ul>
+                    {state.courses.map(course => (
+                      <li key={course.id}>
+                        <img className="img-thumbnail" src={course.thumbnail} alt={`${course.name}-thumb`} />
+                        {course.name}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </Col>
+            </Row>
           </React.Fragment>
         ),
       }}
