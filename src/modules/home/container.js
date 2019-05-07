@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 import DualColumnTemplate from '../../shared/templates/dualColumnTemplate';
-import { AUTH_PAGE, LOGGEDIN_HOME } from '../../config';
+import { AUTH_PAGE, LOGGED_IN_HOME } from '../../config';
 import { AuthContext } from '../auth/authContext';
 
 const HomeContainer = () => {
@@ -16,7 +16,7 @@ const HomeContainer = () => {
         col2: (
           <React.Fragment>
             <p>You might want to login</p>
-            {isLoggedIn ? <NavLink to={LOGGEDIN_HOME}>Dashboard</NavLink> : <NavLink to={AUTH_PAGE}>Login</NavLink>}
+            {isLoggedIn ? <NavLink to={LOGGED_IN_HOME}>Dashboard</NavLink> : <NavLink to={AUTH_PAGE}>Login</NavLink>}
           </React.Fragment>
         ),
       }}
