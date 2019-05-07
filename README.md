@@ -3,10 +3,10 @@
 - [x] Auth Handle
 - [ ] Modal Handle
 - [ ] Theme-able Bootstrap
-- [ ] API Integration
+- [x] API Integration
 - [x] Error Handler
 - [ ] Global Loader
-- [ ] Notification Handler
+- [x] Notification Handler
 - [ ] Logger
 - [x] Router and Private Routers
 
