@@ -5,7 +5,7 @@ import DualColumnTemplate from '../../shared/templates/dualColumnTemplate';
 import { AuthContext } from '../auth/authContext';
 import { getCourseList } from './service';
 import { APPLICATION_HOME } from '../../config';
-import ErrorContext, { ErrorContextConsumer } from '../../shared/molecules/error/context';
+import ErrorContext, { ErrorContextConsumer } from '../../shared/modules/error/context';
 
 const defaultState = {
   courses: [],

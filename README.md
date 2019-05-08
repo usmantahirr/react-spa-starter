@@ -9,6 +9,11 @@
 - [x] Notification Handler
 - [ ] Logger
 - [x] Router and Private Routers
+- [ ] Unit tests
+
+#### Upcoming Features
+- [ ] Firebase support
+- [ ] Storybooks support
 
 ### Scripts
 
