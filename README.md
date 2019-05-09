@@ -7,7 +7,7 @@
 - [x] Error Handler
 - [ ] Global Loader
 - [x] Notification Handler
-- [ ] Logger
+- [x] Logger
 - [x] Router and Private Routers
 - [ ] Translation support
 - [ ] Unit tests
