@@ -16,7 +16,7 @@ const Notification = ({ children }) => {
   const setNotification = (notification, show) => {
     if (show && notificationsRef && notificationsRef.current) {
       notificationsRef.current.addNotification({
-        level: notification.type || 'error',
+        level: notification.type,
         message: (
           <div>
             {notification.statusCode && <b>{notification.statusCode}: </b>}

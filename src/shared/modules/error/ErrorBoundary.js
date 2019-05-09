@@ -31,7 +31,7 @@ class ErrorBoundary extends React.Component {
   setError(error, show) {
     if (show) {
       const { setNotification } = this.context;
-      setNotification(error, show);
+      setNotification({ ...error, type: 'error' }, show);
     }
     this.setState({ error });
   }
