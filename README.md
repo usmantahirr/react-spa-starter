@@ -9,6 +9,7 @@
 - [x] Notification Handler
 - [ ] Logger
 - [x] Router and Private Routers
+- [ ] Translation support
 - [ ] Unit tests
 
 #### Upcoming Features

@@ -1,17 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import NotificationContext from './NotificationContext';
+import NotificationsContext from '../notification/context';
 import { ErrorContextProvider } from './context';
+import Logger from '../logger';
 
 class ErrorBoundary extends React.Component {
   static getDerivedStateFromError(error) {
-    // eslint-disable-next-line no-console
-    console.log('Derived Error', error);
+    Logger.info('Derived Error', error);
     return { applicationError: true };
   }
 
-  static contextType = NotificationContext;
+  static contextType = NotificationsContext;
 
   constructor(props) {
     super(props);
@@ -30,16 +30,15 @@ class ErrorBoundary extends React.Component {
 
   setError(error, show) {
     if (show) {
-      // eslint-disable-next-line react/destructuring-assignment
-      this.context.setNotification(error, show);
+      const { setNotification } = this.context;
+      setNotification(error, show);
     }
     this.setState({ error });
   }
 
   componentDidCatch(error, info) {
     // You can also log the error to an error reporting service
-    // eslint-disable-next-line no-console
-    console.log('CDC', error, info);
+    Logger.info('CDC', error, info);
   }
 
   render() {

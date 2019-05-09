@@ -1,8 +1,10 @@
 import API from '../../api';
 import { COURSE } from '../../api/endpoints';
 
+import Logger from '../../shared/modules/logger';
+
 export async function getCourseList({ filters }) {
-  console.log(filters);
+  Logger.info('Fetching course list with filters', filters);
   const api = new API();
   return api.get(COURSE, undefined, filters).then(
     res => ({

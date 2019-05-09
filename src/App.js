@@ -3,12 +3,12 @@ import { BrowserRouter } from 'react-router-dom';
 
 import AuthContextContainer from './modules/auth/contextContainer';
 import ErrorBoundary from './shared/modules/error/ErrorBoundary';
-import Notifications from './shared/modules/error/Notifications';
+import Notification from './shared/modules/notification';
 import Routes from './routes';
 
 function App() {
   return (
-    <Notifications>
+    <Notification>
       <ErrorBoundary>
         <BrowserRouter>
           <AuthContextContainer>
@@ -16,7 +16,7 @@ function App() {
           </AuthContextContainer>
         </BrowserRouter>
       </ErrorBoundary>
-    </Notifications>
+    </Notification>
   );
 }
 

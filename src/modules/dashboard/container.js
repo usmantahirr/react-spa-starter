@@ -6,6 +6,7 @@ import { AuthContext } from '../auth/authContext';
 import { getCourseList } from './service';
 import { APPLICATION_HOME } from '../../config';
 import ErrorContext, { ErrorContextConsumer } from '../../shared/modules/error/context';
+import Logger from '../../shared/modules/logger';
 
 const defaultState = {
   courses: [],
@@ -26,6 +27,7 @@ const DashboardContainer = ({ match }) => {
     setState({ ...state, isLoading: true });
     getCourseList({ filters: { ...state.filters, ...state.pageDetails } })
       .then(courses => {
+        Logger.info('Courses received', courses);
         setState({
           ...state,
           courses: courses.data,
