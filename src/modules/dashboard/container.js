@@ -24,25 +24,25 @@ const DashboardContainer = ({ match }) => {
   const [state, setState] = React.useState(defaultState);
 
   function fetchAllCourses() {
-    setState({ ...state, isLoading: true });
+    setState(prevState => ({ ...prevState, isLoading: true }));
     getCourseList({ filters: { ...state.filters, ...state.pageDetails } })
       .then(courses => {
         Logger.info('Courses received', courses);
-        setState({
-          ...state,
+        setState(prevState => ({
+          ...prevState,
           courses: courses.data,
           isLoading: false,
-        });
+        }));
       })
       .catch(error => {
-        setState({ ...state, isLoading: false });
+        setState(prevState => ({ ...prevState, isLoading: false }));
         errorContext.setError(error, true);
       });
   }
 
   useEffect(() => {
     fetchAllCourses();
-  }, [match.path]);
+  }, [match.path]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <DualColumnTemplate>
