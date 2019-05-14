@@ -23,26 +23,28 @@ const DashboardContainer = ({ match }) => {
   const errorContext = React.useContext(ErrorContext);
   const [state, setState] = React.useState(defaultState);
 
-  function fetchAllCourses() {
-    setState(prevState => ({ ...prevState, isLoading: true }));
-    getCourseList({ filters: { ...state.filters, ...state.pageDetails } })
-      .then(courses => {
-        Logger.info('Courses received', courses);
-        setState(prevState => ({
-          ...prevState,
-          courses: courses.data,
-          isLoading: false,
-        }));
-      })
-      .catch(error => {
-        setState(prevState => ({ ...prevState, isLoading: false }));
-        errorContext.setError(error, true);
-      });
-  }
-
+  // https://reactjs.org/docs/hooks-faq.html#is-it-safe-to-omit-functions-from-the-list-of-dependencies
   useEffect(() => {
+    function fetchAllCourses() {
+      setState(prevState => ({ ...prevState, isLoading: true }));
+
+      getCourseList({ filters: { ...state.filters, ...state.pageDetails } })
+        .then(courses => {
+          Logger.info('Courses received', courses);
+          setState(prevState => ({
+            ...prevState,
+            courses: courses.data,
+            isLoading: false,
+          }));
+        })
+        .catch(error => {
+          setState(prevState => ({ ...prevState, isLoading: false }));
+          errorContext.setError(error, true);
+        });
+    }
+
     fetchAllCourses();
-  }, [match.path]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [match.path, state.filters, state.pageDetails, errorContext]);
 
   return (
     <DualColumnTemplate>
