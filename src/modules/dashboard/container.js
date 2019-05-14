@@ -1,12 +1,16 @@
 import React, { useEffect } from 'react';
 import { Button, Row, Col, Spinner } from 'reactstrap';
 import { NavLink, withRouter } from 'react-router-dom';
+
 import DualColumnTemplate from '../../shared/templates/dualColumnTemplate';
+
+import ErrorContext from '../../shared/modules/error/context';
+import { NotificationContextConsumer } from '../../shared/modules/notification/context';
 import { AuthContext } from '../auth/authContext';
+
 import { getCourseList } from './service';
-import { APPLICATION_HOME } from '../../config';
-import ErrorContext, { ErrorContextConsumer } from '../../shared/modules/error/context';
 import Logger from '../../shared/modules/logger';
+import { APPLICATION_HOME } from '../../config';
 
 const defaultState = {
   courses: [],
@@ -44,7 +48,7 @@ const DashboardContainer = ({ match }) => {
     }
 
     fetchAllCourses();
-  }, [match.path, state.filters, state.pageDetails, errorContext]);
+  }, [match.path, state.filters, state.pageDetails]);
 
   return (
     <DualColumnTemplate>
@@ -57,11 +61,11 @@ const DashboardContainer = ({ match }) => {
               Home
             </NavLink>
             <Button onClick={() => authContext.logout()}>Logout</Button>
-            <ErrorContextConsumer>
+            <NotificationContextConsumer>
               {props => (
                 <Button
                   onClick={() =>
-                    props.setError(
+                    props.setNotification(
                       {
                         type: 'info',
                         message: 'Error Occurred',
@@ -74,7 +78,7 @@ const DashboardContainer = ({ match }) => {
                   Show Error
                 </Button>
               )}
-            </ErrorContextConsumer>
+            </NotificationContextConsumer>
             <Row>
               <Col>
                 {state.isLoading ? (
