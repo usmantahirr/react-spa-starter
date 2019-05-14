@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 
 import AuthContextContainer from './modules/auth/contextContainer';
-import Language from './modules/language';
+import Language from './shared/modules/language';
 import ErrorBoundary from './shared/modules/error/ErrorBoundary';
 import Notification from './shared/modules/notification';
 

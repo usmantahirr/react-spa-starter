@@ -13,15 +13,16 @@ const LanguageContainer = ({ children }) => {
   const [langResource, setLangResource] = useState({});
 
   useEffect(() => {
-    console.log('effect', language);
     if (language) {
-      const languageResource = require(`../../i18n/${language}.json`); // eslint-disable-line
+      const languageResource = require(`../../../i18n/${language}.json`); // eslint-disable-line
       setLangResource(languageResource);
     }
   }, [language]);
 
   const switchLanguage = lang => {
-    setLanguage(lang);
+    if (lang) {
+      setLanguage(lang);
+    }
   };
 
   return (
