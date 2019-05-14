@@ -11,6 +11,7 @@ import { AuthContext } from '../auth/authContext';
 import { getCourseList } from './service';
 import Logger from '../../shared/modules/logger';
 import { APPLICATION_HOME } from '../../config';
+import CModal from '../../shared/modules/modal';
 
 const defaultState = {
   courses: [],
@@ -26,6 +27,7 @@ const DashboardContainer = ({ match }) => {
   const authContext = React.useContext(AuthContext);
   const errorContext = React.useContext(ErrorContext);
   const [state, setState] = React.useState(defaultState);
+  const [modalVisible, setModalVisible] = React.useState(false);
 
   // https://reactjs.org/docs/hooks-faq.html#is-it-safe-to-omit-functions-from-the-list-of-dependencies
   useEffect(() => {
@@ -61,6 +63,7 @@ const DashboardContainer = ({ match }) => {
               Home
             </NavLink>
             <Button onClick={() => authContext.logout()}>Logout</Button>
+            <Button onClick={() => setModalVisible(true)}>Show Modal</Button>
             <NotificationContextConsumer>
               {props => (
                 <Button
@@ -95,6 +98,16 @@ const DashboardContainer = ({ match }) => {
                 )}
               </Col>
             </Row>
+            <CModal
+              title="Test Modal"
+              visible={modalVisible}
+              toggle={() => setModalVisible(!modalVisible)}
+              primaryText="Proceed"
+              secondaryText="Cancel"
+              primaryAction={() => setModalVisible(false)}
+            >
+              This is Modal Content
+            </CModal>
           </React.Fragment>
         ),
       }}
