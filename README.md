@@ -1,7 +1,7 @@
 ### Features
 
 - [x] Auth Handle
-- [ ] Modal Handle
+- [x] Modal Handle
 - [ ] Theme-able Bootstrap
 - [x] API Integration
 - [x] Error Handler
@@ -9,10 +9,11 @@
 - [x] Notification Handler
 - [x] Logger
 - [x] Router and Private Routers
-- [ ] Translation support
+- [x] Translation support
 - [ ] Unit tests
 
 #### Upcoming Features
+
 - [ ] Firebase support
 - [ ] Storybooks support
 
