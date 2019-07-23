@@ -9,7 +9,7 @@
 - [x] Notification Handler
 - [x] Logger
 - [x] Router and Private Routers
-- [x] Translation support
+- [x] i8n
 - [ ] Unit tests
 
 #### Upcoming Features
