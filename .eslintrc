@@ -1,5 +1,13 @@
 {
   "extends": ["airbnb", "prettier", "prettier/react"],
+  "overrides": [
+    {
+      "files": ["**/*.spec.js", "**/*.spec.jsx"],
+      "env": {
+        "jest": true
+      }
+    }
+  ],
   "plugins": ["prettier"],
   "rules": {
     "react/jsx-filename-extension": [
