@@ -16,7 +16,13 @@ const HomeContainer = () => {
         col2: (
           <React.Fragment>
             <p>You might want to login</p>
-            {isLoggedIn ? <NavLink to={LOGGED_IN_HOME}>Dashboard</NavLink> : <NavLink to={AUTH_PAGE}>Login</NavLink>}
+            {isLoggedIn ? (
+              <NavLink to={LOGGED_IN_HOME}>Dashboard</NavLink>
+            ) : (
+              <NavLink to={AUTH_PAGE} data-testid="login-btn">
+                Login
+              </NavLink>
+            )}
           </React.Fragment>
         ),
       }}

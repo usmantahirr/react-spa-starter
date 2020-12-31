@@ -21,10 +21,26 @@ const LoginPage = ({ handleSubmit }) => {
   const LoginForm = (
     <Form onSubmit={handleSubmit(formState.email, formState.password)}>
       <Label for="email">Email</Label>
-      <Input id="email" name="email" type="email" value={formState.email} onChange={handleChange} />
+      <Input
+        id="email"
+        name="email"
+        type="email"
+        value={formState.email}
+        onChange={handleChange}
+        aria-label="email-input"
+      />
       <Label for="password">Password</Label>
-      <Input id="password" name="password" type="password" value={formState.password} onChange={handleChange} />
-      <Button color="primary">Login</Button>
+      <Input
+        id="password"
+        name="password"
+        type="password"
+        value={formState.password}
+        onChange={handleChange}
+        aria-label="password-input"
+      />
+      <Button color="primary" data-testid="login-button">
+        Login
+      </Button>
     </Form>
   );
 

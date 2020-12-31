@@ -62,7 +62,9 @@ const DashboardContainer = ({ match }) => {
             <NavLink className="btn btn-primary" to={APPLICATION_HOME}>
               Home
             </NavLink>
-            <Button onClick={() => authContext.logout()}>Logout</Button>
+            <Button onClick={() => authContext.logout()} data-testid="logout-btn">
+              Logout
+            </Button>
             <Button onClick={() => setModalVisible(true)}>Show Modal</Button>
             <NotificationContextConsumer>
               {props => (
