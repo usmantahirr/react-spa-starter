@@ -6,9 +6,13 @@ const LanguageSwitcher = () => {
   return (
     <LanguageContext.Consumer>
       {({ language, switchLanguage }) => (
-        <select value={language} onChange={e => switchLanguage(e.target.value)}>
-          <option value="en">English</option>
-          <option value="fr">French</option>
+        <select value={language} onChange={e => switchLanguage(e.target.value)} data-testid="languageSwitcher">
+          <option value="en" data-testid="en">
+            English
+          </option>
+          <option value="fr" data-testid="fr">
+            French
+          </option>
         </select>
       )}
     </LanguageContext.Consumer>
